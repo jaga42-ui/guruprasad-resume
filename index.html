@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-theme">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guruprasad Jena | Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ------------------------- */
+        /* --- RESET & VARIABLES --- */
+        /* ------------------------- */
+        :root {
+            --ease-1: cubic-bezier(0.25, 1, 0.5, 1);
+            --ease-out-5: cubic-bezier(0, 0, 0, 1);
+        }
+        
+        html, body {
+            scroll-behavior: smooth;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* --------------------- */
+        /* --- THEME PALETTE --- */
+        /* --------------------- */
+        html {
+            /* Light Theme Defaults */
+            --bg-color: #f4f7fc;
+            --bg-glow: radial-gradient(circle at 100% 0%, rgba(13, 110, 253, 0.1), transparent 30%), radial-gradient(circle at 0% 100%, rgba(0, 230, 200, 0.1), transparent 30%);
+            --text-primary: #121212;
+            --text-secondary: #555;
+            --accent-primary: #0077b6; /* Teal */
+            --accent-secondary: #480ca8; /* Indigo */
+            --glass-bg: rgba(255, 255, 255, 0.6);
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --icon-filter: invert(0%);
+            --svg-glow-1: #0077b6;
+            --svg-glow-2: #480ca8;
+        }
+
+        html.dark-theme {
+            /* Dark Theme Overrides */
+            --bg-color: #0d1117;
+            --bg-glow: radial-gradient(circle at 100% 0%, rgba(0, 119, 182, 0.2), transparent 40%), radial-gradient(circle at 0% 100%, rgba(72, 12, 168, 0.2), transparent 40%);
+            --text-primary: #e6edf3;
+            --text-secondary: #a0a0a0;
+            --accent-primary: #00f5d4;
+            --accent-secondary: #9b5de5;
+            --glass-bg: rgba(22, 27, 34, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --shadow-color: rgba(0, 0, 0, 0.4);
+            --icon-filter: invert(100%);
+            --svg-glow-1: #00f5d4;
+            --svg-glow-2: #9b5de5;
+        }
+
+        /* --------------------- */
+        /* --- BASE STYLES --- */
+        /* --------------------- */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            transition: background-color 0.5s ease, color 0.5s ease;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: var(--bg-glow);
+            background-size: 200% 200%;
+            animation: gradient-pan 20s ease infinite;
+            z-index: -1;
+            transition: background-image 0.5s ease;
+        }
+        
+        @keyframes gradient-pan {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* ------------------------------ */
+        /* --- REFINED LAYOUT STRUCTURE --- */
+        /* ------------------------------ */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem; /* Mobile padding */
+            display: grid;
+            grid-template-columns: 1fr; /* Single column on mobile */
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .main-container {
+                padding: 4rem 2rem;
+                grid-template-columns: minmax(300px, 360px) 1fr; /* Two columns for tablet and up */
+                gap: 2.5rem;
+                align-items: start; /* CRITICAL: Prevents sticky column from stretching */
+            }
+        }
+
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .left-column {
+                position: sticky;
+                top: 2rem;
+                height: max-content;
+            }
+        }
+
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            min-width: 0; /* Prevents content overflow from breaking the grid */
+        }
+        
+        /* ----------------------- */
+        /* --- GLASS CARD BASE --- */
+        /* ----------------------- */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem; /* Standardized padding for all cards */
+            box-shadow: 0 8px 32px 0 var(--shadow-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+            transform: rotate(0deg);
+            transition: transform 1s ease;
+            pointer-events: none;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 var(--shadow-color);
+        }
+        
+        .glass-card:hover::before {
+            transform: rotate(360deg);
+        }
+
+        /* -------------------------- */
+        /* --- UTILITY & HELPERS ---- */
+        /* -------------------------- */
+        .section-title-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        .section-title-icon {
+            width: 28px;
+            height: 28px;
+            color: var(--accent-primary);
+            flex-shrink: 0;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .section-title-wrapper:hover .section-title-icon {
+            transform: rotate(10deg) scale(1.1);
+        }
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0;
+            position: relative;
+            display: inline-block;
+            color: var(--text-primary);
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 2px;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            margin-right: 0.75rem;
+        }
+        
+        .hidden { display: none; }
+        
+        @media (prefers-reduced-motion: reduce) {
+          *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+          }
+        }
+        
+        /* -------------------------- */
+        /* --- HERO/PROFILE CARD ---- */
+        /* -------------------------- */
+        #profile-card {
+            text-align: center;
+            padding: 2rem; /* Consistent padding */
+        }
+        
+        #profile-photo {
+            width: 128px;
+            height: 128px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            background: linear-gradient(var(--bg-color), var(--bg-color)) padding-box, linear-gradient(45deg, var(--accent-primary), var(--accent-secondary)) border-box;
+            box-shadow: 0 4px 20px var(--shadow-color);
+            margin: 0 auto 1.5rem auto;
+            display: block;
+            transition: transform 0.4s var(--ease-1);
+            animation: float 4s ease-in-out infinite;
+        }
+        #profile-photo:hover {
+            transform: scale(1.05);
+            animation-play-state: paused;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        #profile-card.draggable {
+            cursor: grab;
+        }
+        
+        #profile-card.dragging {
+            cursor: grabbing;
+            user-select: none;
+        }
+        
+        .hero-svg-banner {
+            width: 100%;
+            height: auto;
+            max-height: 120px;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-svg-banner path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw-line 3s ease-out forwards;
+        }
+
+        .hero-svg-banner #glow-line-1 {
+            filter: drop-shadow(0 0 5px var(--svg-glow-1));
+        }
+
+        .hero-svg-banner #glow-line-2 {
+            filter: drop-shadow(0 0 5px var(--svg-glow-2));
+        }
+        
+        @keyframes draw-line {
+            to { stroke-dashoffset: 0; }
+        }
+        
+        .profile-name {
+            /* EDIT YOUR NAME HERE */
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0;
+            color: var(--text-primary);
+        }
+        
+        .profile-title {
+            /* EDIT YOUR TITLE/ROLE HERE */
+            font-size: 1rem;
+            color: var(--accent-primary);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        .typing-container {
+            font-family: monospace;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            height: 20px;
+        }
+        
+        .typing-cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1rem;
+            background-color: var(--text-secondary);
+            animation: blink 0.7s infinite;
+            vertical-align: middle;
+        }
+        
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* -------------------------- */
+        /* --- CONTACT SECTION ------ */
+        /* -------------------------- */
+        .contact-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+        .contact-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        .contact-list a, .contact-list span {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            word-break: break-word;
+        }
+        .contact-list a:hover {
+            color: var(--accent-primary);
+        }
+        #copy-email-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            margin-left: 0.5rem;
+            flex-shrink: 0;
+        }
+        #copy-email-btn .icon {
+            filter: var(--icon-filter);
+            width: 16px;
+            height: 16px;
+            margin: 0;
+        }
+
+        /* ---------------------- */
+        /* --- SKILLS SECTION --- */
+        /* ---------------------- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 2rem 1rem;
+            justify-items: center;
+        }
+        .skill-item {
+            position: relative;
+            width: 120px;
+            height: 138.56px; /* Maintains aspect ratio for hexagon */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            background: var(--glass-bg);
+            -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            transition: transform 0.3s var(--ease-1), color 0.3s ease, opacity 0.5s ease, transform 0.5s ease;
+            transform: translateY(20px);
+            opacity: 0;
+            cursor: default;
+        }
+
+        .skill-item::before, .skill-item::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            z-index: -1;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        
+        /* Inner fill */
+        .skill-item::before {
+            background: var(--glass-bg);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        /* Border gradient */
+        .skill-item::after {
+             background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+             opacity: 0;
+             transform: scale(1.1);
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px) scale(1.05);
+            color: var(--text-primary);
+        }
+        
+        .skill-item:hover::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .skill-item span {
+            z-index: 1;
+            padding: 0 10px;
+        }
+
+        .skill-item.in-view {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .skill-category {
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--accent-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* ---------------------------- */
+        /* --- EDUCATION SECTION ------ */
+        /* ---------------------------- */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: linear-gradient(var(--accent-secondary), var(--accent-primary));
+            border-radius: 2px;
+        }
+        .timeline-item {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--bg-color);
+            border: 2px solid var(--accent-primary);
+            margin-left: -5px;
+            z-index: 1;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .timeline-item:hover::before {
+            transform: scale(1.2);
+            background-color: var(--accent-primary);
+        }
+        .timeline-degree {
+            /* EDIT YOUR DEGREE HERE */
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+        }
+        .timeline-university {
+            /* EDIT YOUR UNIVERSITY HERE */
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+        .timeline-date {
+            /* EDIT YOUR DATES HERE */
+            color: var(--accent-primary);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* ---------------------------- */
+        /* --- EXPERIENCE SECTION ----- */
+        /* ---------------------------- */
+        .exp-item {
+            cursor: pointer;
+        }
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .exp-header h3 {
+            font-size: 1.1rem;
+        }
+        .exp-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, margin-top 0.5s ease-out, opacity 0.5s ease-out;
+            opacity: 0;
+        }
+        .exp-details.expanded {
+            margin-top: 1rem;
+            max-height: 500px; /* Adjust as needed */
+            opacity: 1;
+        }
+        .exp-details ul {
+            list-style-position: inside;
+            padding-left: 0.5rem;
+            color: var(--text-secondary);
+        }
+        .exp-details ul li { margin-bottom: 0.5rem; }
+        .exp-toggle-icon {
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        .exp-toggle-icon.expanded {
+            transform: rotate(45deg);
+        }
+        .exp-certification {
+            font-size: 0.8rem;
+            font-style: italic;
+            margin-top: 0.5rem;
+            color: var(--accent-primary);
+        }
+        
+        /* ---------------------------- */
+        /* --- PROJECTS SECTION ------- */
+        /* ---------------------------- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .project-card {
+            display: block;
+            text-decoration: none;
+            padding: 1.5rem; /* Slightly less padding for denser look */
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px var(--shadow-color);
+        }
+        .project-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+        .project-card:hover .project-title {
+            color: var(--accent-primary);
+        }
+        .project-title .icon {
+            width: 16px;
+            height: 16px;
+            margin: 0 0 0 8px;
+            stroke: var(--text-secondary);
+            transition: stroke 0.3s ease;
+        }
+        .project-card:hover .project-title .icon {
+            stroke: var(--accent-primary);
+        }
+        .project-description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+        
+        /* -------------------------- */
+        /* --- FLOATING ACTIONS ----- */
+        /* -------------------------- */
+        .floating-actions {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+        }
+        .action-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px var(--shadow-color);
+            transition: all 0.3s ease;
+        }
+        .action-btn:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 6px 15px var(--shadow-color);
+        }
+        .action-btn .icon {
+            width: 24px;
+            height: 24px;
+            margin: 0;
+            filter: var(--icon-filter);
+        }
+        
+        @media (max-width: 767px) {
+            .floating-actions {
+                bottom: 1rem;
+                right: 1rem;
+            }
+            .action-btn {
+                width: 48px;
+                height: 48px;
+            }
+            .action-btn .icon {
+                width: 22px;
+                height: 22px;
+            }
+        }
+        
+        /* -------------------------- */
+        /* --- TOOLTIP ------------- */
+        /* -------------------------- */
+        .tooltip {
+            position: fixed;
+            background-color: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            z-index: 1001;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+            transform: translateY(10px);
+        }
+        .tooltip.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* -------------------------- */
+        /* --- SCROLL ANIMATIONS ---- */
+        /* -------------------------- */
+        .right-column > .glass-card {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .right-column > .glass-card.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* -------------------------- */
+        /* --- PRINT STYLES --------- */
+        /* -------------------------- */
+        @media print {
+            :root {
+                --bg-color: #fff;
+                --text-primary: #000;
+                --text-secondary: #333;
+                --accent-primary: #0077b6;
+                --accent-secondary: #480ca8;
+            }
+            body {
+                background-color: #fff;
+                color: #000;
+            }
+            .main-container {
+                display: block;
+                padding: 1cm;
+                max-width: 100%;
+            }
+            .left-column, .right-column {
+                position: static;
+                display: block;
+            }
+            .glass-card, .project-card {
+                box-shadow: none;
+                border: 1px solid #ccc;
+                padding: 1rem;
+                margin-bottom: 1rem;
+                background: #fff;
+                backdrop-filter: none;
+                break-inside: avoid;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            .floating-actions, .hero-svg-banner, body::before, #profile-photo {
+                display: none;
+            }
+            .section-title {
+                font-size: 1.2rem;
+                padding-bottom: 5px;
+                border-bottom: 2px solid #000;
+            }
+            .section-title::after { display: none; }
+            a { text-decoration: none; color: inherit; }
+            .skills-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .skill-item {
+                border: 1px solid #ddd;
+                opacity: 1 !important;
+                transform: none !important;
+                background: #fff;
+                clip-path: none;
+                width: 100%;
+                height: auto;
+                padding: 0.5rem;
+                border-radius: 4px;
+            }
+            .skill-item::before, .skill-item::after { display: none; }
+            .projects-grid {
+                 grid-template-columns: 1fr;
+            }
+            .exp-details {
+                max-height: none !important;
+                opacity: 1 !important;
+                margin-top: 0.5rem !important;
+            }
+            .exp-toggle-icon { display: none; }
+            .timeline::before { background: #ccc; }
+            .timeline-item::before { border-color: #000; background-color: #fff; }
+        }
+    </style>
+</head>
+<body class="">
+
+    <div class="main-container">
+        <aside class="left-column">
+            <section id="profile-card" class="glass-card draggable" aria-label="Profile and Contact Information">
+                  <img src="https://i.postimg.cc/1RWnjs11/Whats-App-Image-2025-10-05-at-11-25-27-ebb1f3ea.jpg" alt="Guruprasad Jena Profile Photo" id="profile-photo">
+                  <svg class="hero-svg-banner" viewBox="0 0 400 120" preserveAspectRatio="xMidYMid meet">
+                      <defs>
+                          <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                              <stop offset="0%" style="stop-color:var(--accent-primary); stop-opacity:1" />
+                              <stop offset="100%" style="stop-color:var(--accent-secondary); stop-opacity:1" />
+                          </linearGradient>
+                      </defs>
+                      <path id="glow-line-1" d="M 20 60 Q 100 10, 200 60 T 380 60" stroke="url(#line-gradient)" stroke-width="3" fill="none" stroke-linecap="round" />
+                      <path id="glow-line-2" d="M 20 70 Q 100 120, 200 70 T 380 70" stroke="url(#line-gradient)" stroke-width="2" fill="none" stroke-linecap="round" style="animation-delay: 0.2s;"/>
+                  </svg>
+                  <h1 class="profile-name">Guruprasad Jena</h1>
+                  <p class="profile-title">MCA Student | Aspiring Software Developer</p>
+                  <div class="typing-container">
+                      <span id="typing-text"></span><span class="typing-cursor"></span>
+                  </div>
+            </section>
+            
+            <section class="glass-card" aria-labelledby="contact-title">
+                <div class="section-title-wrapper">
+                    <svg class="section-title-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    <h2 id="contact-title" class="section-title">Contact</h2>
+                </div>
+                <ul class="contact-list">
+                    <li>
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        <a href="mailto:guruprasadjena989@gmail.com">guruprasadjena989@gmail.com</a>
+                        <button id="copy-email-btn" aria-label="Copy email address">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        </button>
+                    </li>
+                    <li>
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        <a href="tel:+917750049014">+91 7750049014</a>
+                    </li>
+                    <li>
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        <a href="https://linkedin.com/in/guruprasad-jena-125792368" target="_blank" rel="noopener noreferrer">linkedin.com/in/guruprasad-jena...</a>
+                    </li>
+                    <li>
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <span>Balasore, Odisha, India</span>
+                    </li>
+                </ul>
+            </section>
+        </aside>
+
+        <main class="right-column">
+          <section class="glass-card" aria-labelledby="about-title">
+  <div class="section-title-wrapper">
+
+<svg xmlns="http://www.w3.org/2000/svg" 
+     width="24" 
+     height="24" 
+     viewBox="0 0 24 24" 
+     fill="none" 
+     stroke="currentColor" 
+     stroke-width="2" 
+     stroke-linecap="round" 
+     stroke-linejoin="round"
+     class="section-title-icon">
+    
+    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+    
+    <circle cx="12" cy="7" r="4"></circle>
+
+</svg>
+    <h2 id="about-title" class="section-title">About Me</h2>
+  </div>
+  <p>
+    I’m <strong>Guruprasad Jena</strong>, a passionate MCA student who believes code isn’t just logic  it’s a form of creativity.
+    I love transforming simple ideas into meaningful digital experiences through clean design and efficient code.
+    Whether it’s a front-end interface that feels alive or a back-end system that runs flawlessly, I enjoy crafting both
+    beauty and performance in every project.
+  </p>
+  <p>
+    Beyond technology, I value curiosity, patience, and quiet consistency the traits that turn learning into mastery.
+    My goal is to grow into a developer who builds not just software, but solutions that inspire and simplify life.
+  </p>
+</section>
+
+            <section class="glass-card" aria-labelledby="education-title">
+                <div class="section-title-wrapper">
+                    <svg class="section-title-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.084a1 1 0 0 0 0 1.838l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12v5c0 5 4 5 6 5s6 0 6-5v-5"/></svg>
+                    <h2 id="education-title" class="section-title">Education</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3 class="timeline-degree">Master of Computer Applications (MCA)</h3>
+                        <p class="timeline-university">Fakir Mohan University, Balasore</p>
+                        <p class="timeline-date">2024 – 2026</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3 class="timeline-degree">Bachelor of Science (Chemistry)</h3>
+                        <p class="timeline-university">Balikuda Degree College, Jagatsinghpur, Balikuda</p>
+                        <p class="timeline-date">2021 – 2024</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="glass-card" aria-labelledby="experience-title">
+                <div class="section-title-wrapper">
+                     <svg class="section-title-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                    <h2 id="experience-title" class="section-title">Experience</h2>
+                </div>
+                 <div class="timeline">
+                    <div class="timeline-item exp-item" tabindex="0" role="button" aria-expanded="false">
+                        <div class="exp-header">
+                            <div>
+                                <h3 class="timeline-degree">Web Development Intern</h3>
+                                <p class="timeline-university">InternPe</p>
+                                <p class="timeline-date">(1 Month Internship)</p>
+                            </div>
+                            <svg class="icon exp-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </div>
+                        <div class="exp-details">
+                           <ul>
+                               <li>Built and optimized responsive websites using HTML, CSS, and JavaScript.</li>
+                               <li>Improved page responsiveness and load time using efficient CSS frameworks.</li>
+                               <li>Collaborated with mentors on small real-world web applications.</li>
+                           </ul>
+                           <p class="exp-certification">Certification ID: IPI#55596</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <section id="skills" class="glass-card" aria-labelledby="skills-title">
+                <div class="section-title-wrapper">
+                    <svg class="section-title-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+                    <h2 id="skills-title" class="section-title">Skills</h2>
+                </div>
+                <h3 class="skill-category">Languages</h3>
+                <div class="skills-grid">
+                    <div class="skill-item"><span>JavaScript</span></div>
+                    <div class="skill-item"><span>C</span></div>
+                    <div class="skill-item"><span>C++</span></div>
+                    <div class="skill-item"><span>Java</span></div>
+                    <div class="skill-item"><span>Python</span></div>
+                    <div class="skill-item"><span>TypeScript</span></div>
+                    <div class="skill-item"><span>SQL</span></div>
+                    <div class="skill-item"><span>Go</span></div>
+                    <div class="skill-item"><span>Ruby</span></div>
+                </div>
+                <h3 class="skill-category">Frontend</h3>
+                <div class="skills-grid">
+                    <div class="skill-item"><span>React</span></div>
+                    <div class="skill-item"><span>HTML5</span></div>
+                    <div class="skill-item"><span>CSS3</span></div>
+                    <div class="skill-item"><span>Redux</span></div>
+                    <div class="skill-item"><span>Bootstrap</span></div>
+                    <div class="skill-item"><span>Tailwind</span></div>
+                    <div class="skill-item"><span>SASS</span></div>
+                </div>
+                 <h3 class="skill-category">Backend</h3>
+                <div class="skills-grid">
+                    <div class="skill-item"><span>Django</span></div>
+                    <div class="skill-item"><span>Flask</span></div>
+                    <div class="skill-item"><span>FastAPI</span></div>
+                    <div class="skill-item"><span>Node.js</span></div>
+                    <div class="skill-item"><span>Express</span></div>
+                    <div class="skill-item"><span>REST</span></div>
+                    <div class="skill-item"><span>GraphQL</span></div>
+                </div>
+                <h3 class="skill-category">Databases</h3>
+                <div class="skills-grid">
+                    <div class="skill-item"><span>MySQL</span></div>
+                    <div class="skill-item"><span>PostgreSQL</span></div>
+                    <div class="skill-item"><span>MongoDB</span></div>
+                    <div class="skill-item"><span>Redis</span></div>
+                    <div class="skill-item"><span>SQLite</span></div>
+                    <div class="skill-item"><span>Firebase</span></div>
+                </div>
+                <h3 class="skill-category">Tools & DevOps</h3>
+                <div class="skills-grid">
+                    <div class="skill-item"><span>Git</span></div>
+                    <div class="skill-item"><span>Docker</span></div>
+                    <div class="skill-item"><span>Jenkins</span></div>
+                    <div class="skill-item"><span>CI/CD</span></div>
+                    <div class="skill-item"><span>AWS</span></div>
+                    <div class="skill-item"><span>Heroku</span></div>
+                </div>
+            </section>
+
+            <section class="glass-card" aria-labelledby="projects-title">
+                <div class="section-title-wrapper">
+                    <svg class="section-title-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    <h2 id="projects-title" class="section-title">Projects</h2>
+                </div>
+                <div class="projects-grid">
+                    <a href="https://github.com/jaga42-ui/e-commerce.git" target="_blank" rel="noopener noreferrer" class="project-card">
+                        <h3 class="project-title">E-commerce Website <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></h3>
+                        <p class="project-description">A fully responsive store built with HTML, CSS, and JS.</p>
+                    </a>
+                    <a href="https://github.com/jaga42-ui/Calculator.git" target="_blank" rel="noopener noreferrer" class="project-card">
+                        <h3 class="project-title">Calculator Web App <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></h3>
+                        <p class="project-description">User-friendly calculator using JavaScript DOM manipulation.</p>
+                    </a>
+                    <a href="https://github.com/jaga42-ui/Connect_4_dot_game.git" target="_blank" rel="noopener noreferrer" class="project-card">
+                        <h3 class="project-title">Connect 4 Game <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></h3>
+                        <p class="project-description">Interactive multiplayer game using JS logic and CSS grid.</p>
+                    </a>
+                    <a href="https://github.com/jaga42-ui/To-Do_List.git" target="_blank" rel="noopener noreferrer" class="project-card">
+                        <h3 class="project-title">To-Do List App <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></h3>
+                        <p class="project-description">Simple yet elegant task manager with local storage.</p>
+                    </a>
+                    <a href="https://github.com/jaga42-ui/My_Portfolio.git" target="_blank" rel="noopener noreferrer" class="project-card">
+                        <h3 class="project-title">Portfolio Website <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></h3>
+                        <p class="project-description">Personal showcase with responsive design and animations.</p>
+                    </a>
+                     <div class="project-card">
+                        <h3 class="project-title">Blog Platform</h3>
+                        <p class="project-description">Created using Django and Flask with CRUD functionality.</p>
+                    </div>
+                     <div class="project-card">
+                        <h3 class="project-title">Chat Application</h3>
+                        <p class="project-description">Real-time chat using Socket.io and Node.js.</p>
+                    </div>
+                     <div class="project-card">
+                        <h3 class="project-title">Weather App</h3>
+                        <p class="project-description">Displays real-time weather data using open API in React.</p>
+                    </div>
+                     <div class="project-card">
+                        <h3 class="project-title">Movie Recommendation System</h3>
+                        <p class="project-description">Python project using ML model.</p>
+                    </div>
+                     <div class="project-card">
+                        <h3 class="project-title">Expense Tracker</h3>
+                        <p class="project-description">React + Node app with authentication and chart visualization.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div class="floating-actions">
+        <button class="action-btn" id="theme-toggle" aria-label="Toggle light/dark theme">
+            <svg class="icon hidden" id="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg class="icon" id="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+        <button class="action-btn" id="print-btn" aria-label="Print or save as PDF">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+        </button>
+    </div>
+
+    <div id="tooltip" class="tooltip">Copied to clipboard!</div>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // -------------------------
+        // --- THEME TOGGLER ---
+        // -------------------------
+        const themeToggle = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('theme-icon-sun');
+        const moonIcon = document.getElementById('theme-icon-moon');
+        const htmlElement = document.documentElement;
+
+        const applyTheme = (theme) => {
+            if (theme === 'dark') {
+                htmlElement.classList.add('dark-theme');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+            } else {
+                htmlElement.classList.remove('dark-theme');
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+            }
+        };
+        
+        const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        applyTheme(savedTheme);
+
+
+        themeToggle.addEventListener('click', () => {
+            const newTheme = htmlElement.classList.contains('dark-theme') ? 'light' : 'dark';
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
+        });
+
+        // -------------------------------
+        // --- EMAIL COPY & TOOLTIP ---
+        // -------------------------------
+        const copyEmailBtn = document.getElementById('copy-email-btn');
+        const tooltip = document.getElementById('tooltip');
+        
+        copyEmailBtn.addEventListener('click', (e) => {
+            const email = 'guruprasadjena989@gmail.com'; /* EDIT YOUR EMAIL FOR COPY FUNCTION */
+            navigator.clipboard.writeText(email).then(() => {
+                tooltip.style.left = `${e.clientX - tooltip.offsetWidth / 2}px`;
+                tooltip.style.top = `${e.clientY - tooltip.offsetHeight - 10}px`;
+                tooltip.classList.add('visible');
+                setTimeout(() => tooltip.classList.remove('visible'), 2000);
+            }).catch(err => console.error('Failed to copy: ', err));
+        });
+
+        // -------------------------
+        // --- TYPING ANIMATION ---
+        // -------------------------
+        const typingTextElement = document.getElementById('typing-text');
+        const words = ["JavaScript", "React", "Node.js", "Python", "SQL"]; /* EDIT YOUR TYPING SKILLS HERE */
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            const currentWord = words[wordIndex];
+            if (isDeleting) {
+                typingTextElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingTextElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                setTimeout(() => isDeleting = true, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+            }
+
+            const typingSpeed = isDeleting ? 100 : 200;
+            setTimeout(type, typingSpeed);
+        }
+        type();
+
+        // -----------------------------
+        // --- SKILL & SECTION SCROLL ANIMATIONS ---
+        // -----------------------------
+        const skills = document.querySelectorAll('.skill-item');
+        const skillObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('in-view');
+                    }, index * 50);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        skills.forEach(skill => skillObserver.observe(skill));
+
+        const sections = document.querySelectorAll('.right-column > .glass-card');
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry, index) => {
+                if(entry.isIntersecting){
+                    setTimeout(() => {
+                         entry.target.classList.add('in-view');
+                    }, index * 150);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        sections.forEach(section => sectionObserver.observe(section));
+
+        // --------------------------
+        // --- EXPERIENCE TOGGLE ---
+        // --------------------------
+        const expItems = document.querySelectorAll('.exp-item');
+        expItems.forEach(item => {
+            const toggle = () => {
+                const details = item.querySelector('.exp-details');
+                const icon = item.querySelector('.exp-toggle-icon');
+                const isExpanded = details.classList.toggle('expanded');
+                item.setAttribute('aria-expanded', isExpanded);
+                icon.classList.toggle('expanded');
+            };
+            item.addEventListener('click', toggle);
+            item.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggle();
+                }
+            });
+        });
+
+        // --------------------------
+        // --- PRINT BUTTON ---
+        // --------------------------
+        const printBtn = document.getElementById('print-btn');
+        printBtn.addEventListener('click', () => window.print());
+
+        // --------------------------
+        // --- DRAGGABLE CARD ---
+        // --------------------------
+        const profileCard = document.getElementById('profile-card');
+        let isDragging = false;
+        let startX, startY, initialX, initialY;
+
+        profileCard.addEventListener('mousedown', (e) => {
+            if (window.innerWidth < 768) return; // Only allow drag on two-column layouts
+            isDragging = true;
+            profileCard.classList.add('dragging');
+            startX = e.clientX;
+            startY = e.clientY;
+            
+            const transform = window.getComputedStyle(profileCard).transform;
+            if (transform !== 'none') {
+                const matrix = new DOMMatrix(transform);
+                initialX = matrix.m41;
+                initialY = matrix.m42;
+            } else {
+                initialX = 0;
+                initialY = 0;
+            }
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const dx = e.clientX - startX;
+            const dy = e.clientY - startY;
+            profileCard.style.transform = `translate(${initialX + dx}px, ${initialY + dy}px)`;
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (!isDragging) return;
+            isDragging = false;
+            profileCard.classList.remove('dragging');
+        });
+        
+    });
+    </script>
+</body>
+</html>
